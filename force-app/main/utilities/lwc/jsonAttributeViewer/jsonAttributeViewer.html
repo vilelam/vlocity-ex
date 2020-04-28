@@ -2,14 +2,10 @@
     <lightning-card
         title="JSONAttribute Viewer"
         icon-name="standard:account">
-        <template if:true={quoteLineItem.data}>
             <div class="slds-m-around_medium">
                 <p>
-                    <lightning-formatted-text 
-                    value={JSONAttribute}>
-                    </lightning-formatted-text>
+                    <lightning-textarea name="input2" label="Textarea field with a predefined value" value={jsonAttr}></lightning-textarea>
                 </p>
             </div>
-        </template>
     </lightning-card>
 </template>

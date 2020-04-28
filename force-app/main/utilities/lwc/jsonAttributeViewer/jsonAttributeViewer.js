@@ -1,18 +1,26 @@
 import { LightningElement, api, wire } from 'lwc';
-import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+import { getRecord } from 'lightning/uiRecordApi';
+const fields = [
+	'QuoteLineItem.vlocity_cmt__JSONAttribute__c'
+];
 
-import JSONATTRIB_FIELD from '@salesforce/schema/QuoteLineItem.CreatedDate';
-
-const fields = [JSONATTRIB_FIELD];
 
 export default class JsonAttributeViewer extends LightningElement {
-    
     @api recordId;
+    quantity;
+    
     @wire(getRecord, { recordId: '$recordId', fields })
-    quoteLineItem;
+    loadQLI( { error, data }) {
+        if (error) {
+            // TODO
+            console.log('Error');
+        } else if (data) {
+            console.log(DataTransfer);
+            this.quantity = data.fields.vlocity_cmt__JSONAttribute__c.value;
+        }
+    }
 
-    get JSONAttribute() {
-        // return '';
-        return getFieldValue(this.QuoteLineItem.CreatedDate, JSONATTRIB_FIELD);
+    get jsonAttr() {
+        return this.quantity;
     }
 }
