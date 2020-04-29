@@ -1,4 +1,64 @@
 <template>
+    <lightning-card title="JSONAttribute Viewer" icon-name="custom:custom108">
+        <div class="slds-m-around_medium"> 
+            <lightning-datatable key-field="code" data={attributes} columns={columns} onrowaction={handleRowAction} hide-checkbox-column>
+            </lightning-datatable>
+        </div>
+        <div class="slds-m-around_medium"> 
+            <template if:true={attribute}>
+                <template if:true={attribute.is_input}>
+                    <lightning-input label={attribute.name} value={attribute.value} type="text" ></lightning-input>
+                </template>
+                <template if:true={attribute.is_number}>
+                    <lightning-input label={attribute.name} value={attribute.value} type="number" ></lightning-input>
+                </template>
+                <template if:true={attribute.is_checkbox}>
+                    <lightning-input label={attribute.name} checked={attribute.value} type="checkbox" ></lightning-input>
+                </template>
+                <template if:true={attribute.is_combobox}>
+                    <lightning-combobox label={attribute.name} value={attribute.value} options={attribute.options}></lightning-combobox>
+                </template>
+                <lightning-button-group class="slds-m-top_medium">
+                    <lightning-button label="Update" icon-name="utility:check"></lightning-button>
+                    <lightning-button label="Cancel" icon-name="utility:close"></lightning-button>
+                </lightning-button-group>
+        
+                <p class="slds-m-top_medium">Attribute Metadata Reference</p>
+                <div class="slds-card slds-card_boundary slds-text-body_small">
+                    <div class="slds-m-around_medium">
+                        <div class="slds-form">
+                            <div class="slds-form-element slds-form-element_horizontal">
+                                <lightning-input disabled label="Attribute Code" value={attribute.code} class="slds-truncate" title={attribute.code} >
+                                </lightning-input>
+                            </div>
+                            <div class="slds-form-element slds-form-element_horizontal">
+                                <lightning-input disabled label="Category Code" value={attribute.category_code} class="slds-truncate" title={attribute.category_code}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-form-element slds-form-element_horizontal">
+                                <lightning-input disabled label="Category Name" value={attribute.category_name} class="slds-truncate" title={attribute.category_name}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-form-element slds-form-element_horizontal">
+                                <lightning-input disabled label="Data Type" value={attribute.data_type} class="slds-truncate" title={attribute.data_type}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-form-element slds-form-element_horizontal">
+                                <lightning-input disabled type="Checkbox" label="Is Active" value={attribute.active} class="slds-truncate" title={attribute.active}>
+                                </lightning-input>
+                            </div>
+                            <div class="slds-form-element slds-form-element_horizontal">
+                                <lightning-input disabled type="Checkbox" label="Is Readonly" value={attribute.readonly} class="slds-truncate" title={attribute.readonly}>
+                                </lightning-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </template>
+        </div>
+    </lightning-card>
+
   
     <lightning-card
         title="JSONAttribute Viewer"
@@ -8,57 +68,6 @@
                     <lightning-textarea name="input2" label="Textarea field with a predefined value" value={jsonAttribute}></lightning-textarea>
                 </p>
             </div>
-    </lightning-card>
-
-    <lightning-card
-        title="JSONAttribute Viewer"
-        icon-name="custom:custom108">
-  <!--        <lightning-datatable
-                    key-field="code"
-                    data={attributes}
-                    columns={columns}
-                    hide-checkbox-column>
-        </lightning-datatable>
-    -->
-        <lightning-layout multiple-rows="true" pull-to-boundary="small">
-            <template for:each={attributes} for:item="attribute">
-                <lightning-layout-item key={attribute.code} size="3" class="slds-p-around_x-small">
-
-                    <article class="slds-card attribute-tile">
-                        <div class="slds-card__body slds-card__body_inner">
-                            <template if:true={attribute.is_text}>
-                                <lightning-input disabled label={attribute.name} value={attribute.value} class="slds-truncate" >
-                                </lightning-input>
-                            </template>
-                            <template if:true={attribute.is_checkbox}>
-                                <lightning-combobox disabled 
-                                    label={attribute.name}
-                                    value={attribute.value}
-                                    options={attribute.options}
-                                    class="slds-truncate"
-                                    >
-                                </lightning-combobox>
-                             </template>
-                            <template if:true={attribute.is_picklist}>
-                                <lightning-combobox disabled 
-                                    label={attribute.name}
-                                    value={attribute.value}
-                                    options={attribute.options}
-                                    class="slds-truncate"
-                                    >
-                                </lightning-combobox>
-                            </template>
-                            <div class="slds-text-body_small slds-truncate" title="Attribute Code">{attribute.code}</div>
-                            <div class="slds-text-body_small slds-truncate" title="Attribute Category" >{attribute.category_name}</div>                 
-                        </div>
-
-                        
-                    </article>
-                </lightning-layout-item>
-
-            </template>
-
-        </lightning-layout>
     </lightning-card>
 
 </template>
