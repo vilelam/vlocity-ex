@@ -28,11 +28,11 @@ export default class JsonAttributeViewer extends LightningElement {
     
     // Attribute Info
     @track attribute;
+    // @track attributeValue;
 
     @track columns = columns;
  
-    tablePanelSize = 6;
-    infoPanelSize = 6;
+    @track viewerCardTitle = 'JSONAttribute Viewer';
 
     // jsonAttribute;
 
@@ -82,6 +82,7 @@ export default class JsonAttributeViewer extends LightningElement {
                         attribute.input_type = 'number';
                         attribute.is_number = true;
                         attribute.value = myRuntimeInfo.value + "";
+
                     } else if (myRuntimeInfo.dataType === "Text" || 
                         myRuntimeInfo.dataType === "Lookup") {
                         attribute.input_type = 'text';
@@ -121,6 +122,7 @@ export default class JsonAttributeViewer extends LightningElement {
                     }
                     // attribute.value = myRuntimeInfo.value ;//+ "";
 
+                    // this.attributeValue = attribute.value;
                     this.attributes.push(attribute);
                 }
 
@@ -137,19 +139,32 @@ export default class JsonAttributeViewer extends LightningElement {
             return 'Record not found';
     }
 
+    handleClick_attributeUpdate(event) {
+        // alert('update');
+        // alert(this.attributeValue);
+
+        this.handleClick_attributeClose(event);
+    }
+
+    handleClick_attributeClose(event) {
+        this.attribute = null;
+        this.viewerCardTitle = 'JSONAttribute Viewer';
+    }
+
     handleRowAction(event) {
         const actionName = event.detail.action.name;
-        const row = event.detail.row;
         this.attribute = event.detail.row;
-        console.log(row);
-        switch (actionName) {
-            case 'delete':
-                // alert('delete');
-                break;
-            case 'show_details':
-                // alert('details');
-                break;
-            default:
-        }
+        // this.attributeValue = this.attribute.value;
+        this.viewerCardTitle = 'Edit "' + this.attribute.name + '"';
+
+        // switch (actionName) {
+        //     case 'delete':
+        //         // alert('delete');
+        //         break;
+        //     case 'show_details':
+        //         // alert('details');
+        //         break;
+        //     default:
+        // }
     }
 }

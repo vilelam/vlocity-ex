@@ -1,8 +1,10 @@
 <template>
-    <lightning-card title="JSONAttribute Viewer" icon-name="custom:custom108">
+    <lightning-card title={viewerCardTitle} icon-name="custom:custom108">
         <div class="slds-m-around_medium"> 
-            <lightning-datatable key-field="code" data={attributes} columns={columns} onrowaction={handleRowAction} hide-checkbox-column>
-            </lightning-datatable>
+            <template if:false={attribute}>
+                <lightning-datatable key-field="code" data={attributes} columns={columns} onrowaction={handleRowAction} hide-checkbox-column>
+                </lightning-datatable>
+            </template>
         </div>
         <div class="slds-m-around_medium"> 
             <template if:true={attribute}>
@@ -19,8 +21,8 @@
                     <lightning-combobox label={attribute.name} value={attribute.value} options={attribute.options}></lightning-combobox>
                 </template>
                 <lightning-button-group class="slds-m-top_medium">
-                    <lightning-button label="Update" icon-name="utility:check"></lightning-button>
-                    <lightning-button label="Cancel" icon-name="utility:close"></lightning-button>
+                    <lightning-button label="Update" icon-name="utility:check" onclick={handleClick_attributeUpdate}></lightning-button>
+                    <lightning-button label="Cancel" icon-name="utility:close" onclick={handleClick_attributeClose}></lightning-button>
                 </lightning-button-group>
         
                 <p class="slds-m-top_medium">Attribute Metadata Reference</p>
@@ -59,7 +61,7 @@
         </div>
     </lightning-card>
 
-  
+<!--
     <lightning-card
         title="JSONAttribute Viewer"
         icon-name="standard:account">
@@ -69,5 +71,5 @@
                 </p>
             </div>
     </lightning-card>
-
+-->  
 </template>
