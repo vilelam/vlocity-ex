@@ -9,16 +9,16 @@
         <div class="slds-m-around_medium"> 
             <template if:true={attribute}>
                 <template if:true={attribute.is_input}>
-                    <lightning-input label={attribute.name} value={attribute.value} type="text" ></lightning-input>
+                    <lightning-input label={attribute.name} value={attribute.value} type="text" name="inputAttributeValue" onchange={handleAttribueValueChange}></lightning-input>
                 </template>
                 <template if:true={attribute.is_number}>
-                    <lightning-input label={attribute.name} value={attribute.value} type="number" ></lightning-input>
+                    <lightning-input label={attribute.name} value={attribute.value} type="number" name="inputAttributeValue" onchange={handleAttribueValueChange}></lightning-input>
                 </template>
                 <template if:true={attribute.is_checkbox}>
-                    <lightning-input label={attribute.name} checked={attribute.value} type="checkbox" ></lightning-input>
+                    <lightning-input label={attribute.name} checked={attribute.value} type="checkbox" name="inputAttributeValue" onchange={handleAttribueValueChange}></lightning-input>
                 </template>
                 <template if:true={attribute.is_combobox}>
-                    <lightning-combobox label={attribute.name} value={attribute.value} options={attribute.options}></lightning-combobox>
+                    <lightning-combobox label={attribute.name} value={attribute.value} options={attribute.options} name="inputAttributeValue" onchange={handleAttribueValueChange}></lightning-combobox>
                 </template>
                 <lightning-button-group class="slds-m-top_medium">
                     <lightning-button label="Update" icon-name="utility:check" onclick={handleClick_attributeUpdate}></lightning-button>

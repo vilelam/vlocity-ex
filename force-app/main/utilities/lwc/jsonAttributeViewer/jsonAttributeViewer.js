@@ -28,7 +28,7 @@ export default class JsonAttributeViewer extends LightningElement {
     
     // Attribute Info
     @track attribute;
-    // @track attributeValue;
+    @track attributeValue;
 
     @track columns = columns;
  
@@ -139,9 +139,16 @@ export default class JsonAttributeViewer extends LightningElement {
             return 'Record not found';
     }
 
+    handleAttribueValueChange(event) {
+        this.attributeValue = event.target.value;
+    }
+
     handleClick_attributeUpdate(event) {
         // alert('update');
         // alert(this.attributeValue);
+        // debugger;
+        // var inputValCtrl = this.template.querySelector('input[name="inputAttributeValue"]');
+        alert(this.attributeValue);
 
         this.handleClick_attributeClose(event);
     }
