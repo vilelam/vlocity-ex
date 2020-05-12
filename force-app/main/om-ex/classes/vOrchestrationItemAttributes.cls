@@ -21,9 +21,15 @@ public class vOrchestrationItemAttributes {
     @InvocableMethod(label='Read Orchestration Item Attributes' category='Vlocity OM')
 
     public static List<Result> readOrchestrationItemData(List<Request> requests) {
-        return new List<Result> {
-            new Result(readOrchestrationItemData(requests[0].orchestrationItemId))
-        };
+        if (String.isNotEmpty(requests[0].orchestrationItemId)) {
+            return new List<Result> {
+                new Result(readOrchestrationItemData(requests[0].orchestrationItemId))
+            };
+        } else {
+            return new List<Result> {
+                new Result(readOrchestrationItemDataList(requests[0].orchestrationItemIds))
+            };
+        }
 
     }
 
@@ -182,6 +188,8 @@ public class vOrchestrationItemAttributes {
         @InvocableVariable(label='ItemIds')
         public List<Id> orchestrationItemIds;
         
+        public Request() {}
+
         public Request(Id orchestrationItemId) {
             this.orchestrationItemId = orchestrationItemId;
         }  
