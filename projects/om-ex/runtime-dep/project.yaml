@@ -1,0 +1,4 @@
+projectPath: vlocity
+manifest:
+  - AttributeCategory/ATTC_V_BOOSTER
+  - ItemImplementation/Execute-Autolaunched-Flow
