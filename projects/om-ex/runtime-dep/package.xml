@@ -2,6 +2,14 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>RT_Orchestration_Dependency_Definition__c</members>
+        <name>CustomTab</name>
+     </types>
+    <types>
+        <members>Build_OM_Runtime_Dependencies</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>RT_Orchestration_Dependency_Definition__c</members>
         <name>CustomObject</name>
     </types>
     <types>
