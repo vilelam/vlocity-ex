@@ -36,8 +36,8 @@ $RECYCLE.BIN/
 
 # Vlocity VDO Datapacks
 projects/vdo/vlocity
-projects/vdo/vlocity-temp
-projects/vdo/vlocityBuildErrors.log
-projects/vdo/vlocityBuildLog.yaml
+**/vlocity-temp
+**/vlocityBuildErrors.log
+**/vlocityBuildLog.yaml
 
 
